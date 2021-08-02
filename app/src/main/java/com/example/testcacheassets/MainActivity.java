@@ -20,15 +20,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
         splashView.show();
 
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                splashView.dismiss();
-                setContentView(R.layout.activity_main);
-                findViewById(R.id.set).setOnClickListener(MainActivity.this::onClick);
-                findViewById(R.id.get).setOnClickListener(MainActivity.this::onClick);
-            }
-        }, 3000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                splashView.dismiss();
+//                setContentView(R.layout.activity_main);
+//                findViewById(R.id.set).setOnClickListener(MainActivity.this::onClick);
+//                findViewById(R.id.get).setOnClickListener(MainActivity.this::onClick);
+//            }
+//        }, 3000);
 
     }
 
@@ -39,7 +39,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.set:
                 SafeJSONObject object = SafeJSONObject.parseSafe("{\n" +
                         "}");
-                new SplashCachingTask(getBaseContext()).execute(object);
                 break;
             case R.id.get:
                 SafeJSONObject obj = SafeJSONObject.parseSafe("{\n" +
@@ -48,7 +47,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         "  \"image_footer\": \"https://cdn.mservice.com.vn/app/img/platform/img_mmct_footer.png\"\n" +
                         "}");
 
-                new SplashCachingTask(getBaseContext()).execute(obj);
                 break;
             default:
         }

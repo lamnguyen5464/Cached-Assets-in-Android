@@ -19,4 +19,6 @@
     <color name="disable_button">#cfcfcd</color>
 
     <color name="color_help">#303233</color>
+
+    <color name="ic_launcher_background">#A32065</color>
 </resources>

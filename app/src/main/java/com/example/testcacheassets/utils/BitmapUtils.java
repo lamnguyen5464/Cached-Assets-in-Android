@@ -41,12 +41,11 @@ public class BitmapUtils {
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir("imageDirect", Context.MODE_PRIVATE);
         // Create imageDir
-        File mypath = new File(directory, fileName);
+        File myPath = new File(directory, fileName);
 
         FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream(mypath);
-            // Use the compress method on the BitMap object to write image to the OutputStream
+            fos = new FileOutputStream(myPath);
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,4 +86,13 @@ public class BitmapUtils {
         }
         return res;
     }
+
+    public static float dpFromPx(final Context context, final float px) {
+        return px / context.getResources().getDisplayMetrics().density;
+    }
+
+    public static float pxFromDp(final Context context, final float dp) {
+        return dp * context.getResources().getDisplayMetrics().density;
+    }
+
 }

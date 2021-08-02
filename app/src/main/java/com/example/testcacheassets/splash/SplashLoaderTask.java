@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.testcacheassets.SplashView;
 import com.example.testcacheassets.utils.BitmapUtils;
@@ -26,11 +27,9 @@ public class SplashLoaderTask extends AsyncTask<Void, Void, Map<String, Bitmap>>
     protected Map<String, Bitmap> doInBackground(Void... voids) {
         Map<String, Bitmap> map = new HashMap<>();
         SafeJSONObject configData = SplashConfigRepo.getConfigLocal(context);
-        if (configData == null) {
+        if (configData == null || !configData.getStringSafely("status").equals("on")) {
             return null;
         }
-
-        Log.d("@@@", "configDAta " + configData.toString());
 
         String path = configData.getStringSafely("internalFilePath");
 

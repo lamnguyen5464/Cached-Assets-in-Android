@@ -10,7 +10,7 @@ public class SplashConfigRepo {
     private static final String SPLASH_CONFIG_KEY = "SPLASH_CONFIG_KEY";
     private static final String INTERNAL_STORAGE = "INTERNAL_STORAGE";
 
-    public static void setConfigLocal(Context context, SafeJSONObject params) {
+    public static void storeConfigLocal(Context context, SafeJSONObject params) {
         Log.d("@@@", "setConfigLocal ");
         if (context == null) {
             return;

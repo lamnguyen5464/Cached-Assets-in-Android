@@ -2,11 +2,11 @@ package com.example.testcacheassets.views;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.testcacheassets.R;
-import com.example.testcacheassets.utils.SafeJSONObject;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -16,9 +16,10 @@ import java.util.Map;
 public class CampaignSplash extends View {
 
     public static List<String> listKeys = Arrays.asList(
-            "image_header",
-            "image_footer",
-            "image_background"
+            "img_campaign_background",
+            "img_campaign_surrounding",
+            "img_campaign_header",
+            "img_campaign_footer"
             //add more component here
     );
 
@@ -26,21 +27,44 @@ public class CampaignSplash extends View {
         super(context);
     }
 
-    public static View init(Context context, Map<String, Bitmap> mapResource){
+    public static View init(Context context) {
         View view = View.inflate(context, R.layout.campaign_splash_screen, null);
-        Map<String, Integer> map = new HashMap<>();
-        map.put("image_header", R.id.image_header);
-        map.put("image_footer", R.id.image_footer);
-        map.put("image_background", R.id.image_background);
+
+        SplashImage footer = view.findViewById(R.id.img_campaign_footer);
+        SplashImage header = view.findViewById(R.id.img_campaign_header);
+
+        header.fixTo(SplashImage.FixedPosition.TOP);
+        footer.fixTo(SplashImage.FixedPosition.BOTTOM);
+        return view;
+    }
+
+    public static View init(Context context, Map<String, Bitmap> mapResource) {
+        View view = View.inflate(context, R.layout.campaign_splash_screen, null);
+
+        //mapping
+        Map<String, Integer> mapId = new HashMap<>();
+        mapId.put("img_campaign_background", R.id.img_campaign_background);
+        mapId.put("img_campaign_surrounding", R.id.img_campaign_surrounding);
+        mapId.put("img_campaign_header", R.id.img_campaign_header);
+        mapId.put("img_campaign_footer", R.id.img_campaign_footer);
         //add more component here
 
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            String key = entry.getKey();
-            Integer componentId = entry.getValue();
-            ImageView imageView = view.findViewById(componentId);
+        for (String key : CampaignSplash.listKeys) {
+            Integer componentId = mapId.get(key);
             Bitmap bitmap = mapResource.get(key);
+
+            if (bitmap == null || componentId == null){
+                continue;
+            }
+
+            ImageView imageView = view.findViewById(componentId);
             imageView.setImageBitmap(bitmap);
         }
+
+        //custom base on what dicussed with designer
+        ((SplashImage)view.findViewById(R.id.img_campaign_footer)).fixTo(SplashImage.FixedPosition.BOTTOM);
+        ((SplashImage)view.findViewById(R.id.img_campaign_surrounding)).fixTo(SplashImage.FixedPosition.TOP);
+
         return view;
     }
 }

@@ -37,8 +37,8 @@ public class SplashCachingTask extends AsyncTask<Void, Void, SafeJSONObject> {
                 "  \"img_campaign_surrounding\": \"https://cdn.mservice.com.vn/app/img/splash/img_campaign_surrounding.png\",\n" +
                 "  \"img_campaign_header\": \"https://cdn.mservice.com.vn/app/img/splash/img_campaign_header.png\",\n" +
                 "  \"img_campaign_footer\": \"https://cdn.mservice.com.vn/app/img/splash/img_campaign_footer.png\",\n" +
-                "  \"vers\": \"3\",\n" +
-                "  \"status\": \"off\"\n" +
+                "  \"vers\": \"4\",\n" +
+                "  \"status\": \"on\"\n" +
                 "}";
         return SafeJSONObject.parseSafe(tmp);
     }

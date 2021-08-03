@@ -1,8 +1,11 @@
 package com.example.testcacheassets.views;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -28,14 +31,16 @@ public class SplashImage extends androidx.appcompat.widget.AppCompatImageView {
 
     public enum FixedPosition {
         TOP,
-        BOTTOM
+        BOTTOM,
+        MID
     }
 
-    private void scaleImageVertical(boolean isFixedTop) {
+    private void scaleImageVertical(float ratio) {
+        this.setScaleType(ImageView.ScaleType.MATRIX);
         DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int SCREEN_WIDTH = metrics.widthPixels;
-        int SCREEN_HEIGHT = metrics.heightPixels;
-
+        final float statusBarHeight = BitmapUtils.pxFromDp(getContext(), 30);
+        final int SCREEN_WIDTH = metrics.widthPixels;
+        final int SCREEN_HEIGHT = (int) (metrics.heightPixels + statusBarHeight);
 
         Drawable drawable = getDrawable();
         if (drawable == null) return;
@@ -50,24 +55,26 @@ public class SplashImage extends androidx.appcompat.widget.AppCompatImageView {
         //keep the ratio of image
         final float realHeight = SCREEN_WIDTH / drawableRatio;
 
-        Matrix matrix = getImageMatrix();
+        Matrix matrix = new Matrix();
         matrix.setScale(scaleWidth, realHeight / drawableHeight);   //scale drawble to fit imageview
-        matrix.preTranslate(
-                0,
-                (isFixedTop ? 0 : -1) *  (realHeight - SCREEN_HEIGHT)
-        );   //translate to fix top (bottom)
 
-        this.setScaleType(ImageView.ScaleType.MATRIX);
+        matrix.postTranslate(
+                0,
+                (ratio) *  Math.abs(SCREEN_HEIGHT - realHeight)
+        );   //translate to fix top (bottom)
         setImageMatrix(matrix);
     }
 
     public void fixTo(FixedPosition fixedPosition) {
         switch (fixedPosition) {
             case TOP:
-                scaleImageVertical(true);
+                scaleImageVertical(0);
                 break;
             case BOTTOM:
-                scaleImageVertical(false);
+                scaleImageVertical(-1);
+                break;
+            case MID:
+                scaleImageVertical((float)-0.5);
                 break;
             default:
         }

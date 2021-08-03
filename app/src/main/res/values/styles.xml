@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="SplashScreen_SplashAnimation">
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+        <item name="android:windowEnterAnimation">@anim/fade_in_splash</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_splash</item>
     </style>
     <style name="SplashScreen_SplashTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowAnimationStyle">@style/SplashScreen_SplashAnimation</item>
@@ -9,5 +10,11 @@
     <style name="SplashScreen_Fullscreen" parent="SplashScreen_SplashTheme">
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="statusBarBackground">@color/transparent</item>
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:padding">0dp</item>
     </style>
 </resources>

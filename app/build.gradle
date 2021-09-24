@@ -2,15 +2,22 @@ plugins {
     id 'com.android.application'
 }
 apply plugin: 'kotlin-android'
+apply plugin: 'com.chrisney.enigma'
+
+enigma.enabled = true
+enigma.injectFakeKeys = true
+enigma.hash = "MoMoH4qdtk2YqNDnLqZzX5HmPEwEwZEN"
+enigma.classes = ["com.example.testcacheassets.MainActivity"]
+enigma.srcJava = "/app/src/main/java"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.testcacheassets"
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdkVersion 25
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -18,8 +25,12 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -27,6 +38,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+
 }
 
 dependencies {

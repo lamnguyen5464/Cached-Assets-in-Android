@@ -3,6 +3,7 @@ package com.example.testcacheassets;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.example.testcacheassets.splash.SplashCachingTask;
@@ -12,12 +13,23 @@ import static android.os.FileUtils.copy;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
+    public static final String key = "123456789";
+
+    static {
+        System.loadLibrary("jni-firebase-config");
+    }
+    public native String getNativeKey(String appEnv);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         SplashView splashView = new SplashView(this);
         splashView.show();
+
+        Log.d("@@@", key);
+        Log.d("@@@", getNativeKey("dev"));
 
 
 //        new Handler().postDelayed(new Runnable() {

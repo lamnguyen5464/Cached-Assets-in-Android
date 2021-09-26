@@ -1,9 +1,9 @@
-#ifndef TESTCACHEASSETS_FIREBASECONFIG_H
-#define TESTCACHEASSETS_FIREBASECONFIG_H
+#ifndef TESTCACHEASSETS_CONFIGBASE_H
+#define TESTCACHEASSETS_CONFIGBASE_H
 
 #include <jni.h>
 
-class FirebaseConfig {
+class ConfigBase {
 protected:
     jstring apiKey;
     jstring appId;
@@ -29,4 +29,4 @@ public:
 };
 
 
-#endif //TESTCACHEASSETS_FIREBASECONFIG_H
+#endif //TESTCACHEASSETS_CONFIGBASE_H

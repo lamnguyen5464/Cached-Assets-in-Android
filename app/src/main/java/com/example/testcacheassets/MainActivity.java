@@ -15,12 +15,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     public static final String key = "123456789";
 
-    static {
-        System.loadLibrary("jni-firebase-config");
-    }
-    public native String getNativeKey(String appEnv);
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +22,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
         SplashView splashView = new SplashView(this);
         splashView.show();
 
+        JNIFirebaseConfig jniFirebaseConfig = new JNIFirebaseConfig(JNIFirebaseConfig.STAGING);
+
+
         Log.d("@@@", key);
-        Log.d("@@@", getNativeKey("dev"));
+        Log.d("###", jniFirebaseConfig.getApiKey());
+        Log.d("###", jniFirebaseConfig.getAppId());
+        Log.d("###", jniFirebaseConfig.getDbUrl());
+        Log.d("###", jniFirebaseConfig.getGcmSenderId());
+        Log.d("###", jniFirebaseConfig.getProjectId());
+        Log.d("###", jniFirebaseConfig.getStorageBucket());
+        Log.d("###", jniFirebaseConfig.getGaTrackingId());
 
 
 //        new Handler().postDelayed(new Runnable() {

@@ -6,28 +6,33 @@ LOCAL_SRC_FILES := main.cpp
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := FirebaseConfig.h
-LOCAL_SRC_FILES := firebaseconfigs/implementation/FirebaseConfig.cpp
+LOCAL_MODULE    := ConfigBase.h
+LOCAL_SRC_FILES := firebaseconfigs/ConfigBase/ConfigBase.cpp
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := DevFirebaseConfig.h
-LOCAL_SRC_FILES := firebaseconfigs/implementation/DevFirebaseConfig.cpp
+LOCAL_MODULE    := ConfigDevelopment.h
+LOCAL_SRC_FILES := firebaseconfigs/ConfigDevelopment/ConfigDevelopment.cpp
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := StagingFirebaseConfig.h
-LOCAL_SRC_FILES := firebaseconfigs/implementation/StagingFirebaseConfig.cpp
+LOCAL_MODULE    := ConfigStaging.h
+LOCAL_SRC_FILES := firebaseconfigs/ConfigStaging/ConfigStaging.cpp
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := ProductionFirebaseConfig.h
-LOCAL_SRC_FILES := firebaseconfigs/implementation/ProductionFirebaseConfig.cpp
+LOCAL_MODULE    := ConfigProduction.h
+LOCAL_SRC_FILES := firebaseconfigs/ConfigProduction/ConfigProduction.cpp
 include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE    := FirebaseConfigFactory.h
-LOCAL_SRC_FILES := firebaseconfigs/implementation/FirebaseConfigFactory.cpp
+LOCAL_SRC_FILES := firebaseconfigs/FirebaseConfigFactory/FirebaseConfigFactory.cpp
+include $(BUILD_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE    := FirebaseConfigInstance.h
+LOCAL_SRC_FILES := firebaseconfigs/FirebaseConfigInstance/FirebaseConfigInstance.cpp
 include $(BUILD_SHARED_LIBRARY)
 
 
